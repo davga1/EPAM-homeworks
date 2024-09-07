@@ -7,7 +7,7 @@ package Homework1;
 
 import java.util.Scanner;
 
-public class Three_Double_Numbers {
+public class ThreeDoubleNumbers {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter double value for first number");

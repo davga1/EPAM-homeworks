@@ -6,7 +6,7 @@ package Homework1;
 
 import java.util.Scanner;
 
-public class Is_A_Divisible_By_B {
+public class IsADivisibleByB {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first number");
