@@ -23,14 +23,18 @@ public class ReturnCash {
         System.out.println("Are you VIP person?");
         boolean isVip = scanner.nextBoolean();
         System.out.println("How much money did you spend?");
-        int moneySpend = scanner.nextInt();
+        int moneySpent = scanner.nextInt();
+        if(moneySpent <= 0){
+            System.out.println("Money spent cannot be negative number");
+            System.exit(2);
+        }
         int sum;
         if (isVip) {
-            sum = moneySpend - ((moneySpend * 15) / 100);
-            System.out.print("As a VIP person, you have 15% discount, your discount is (" + moneySpend + " * 15) / 100 = " + ((moneySpend * 15) / 100) + ", and your ");
+            sum = moneySpent - ((moneySpent * 15) / 100);
+            System.out.print("As a VIP person, you have 15% discount, your discount is (" + moneySpent + " * 15) / 100 = " + ((moneySpent * 15) / 100) + ", and your ");
         } else {
             System.out.print("You are not a VIP person, you have to pay additional 5000 to go in, your ");
-            sum = moneySpend + 5000;
+            sum = moneySpent + 5000;
         }
         System.out.println("final sum is " + sum);
     }

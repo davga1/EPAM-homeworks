@@ -13,10 +13,22 @@ public class IsTriangleOrNot {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter an integer value for side A");
         int sideA = scanner.nextInt();
+        if (sideA <= 0) {
+            System.out.println("Triangle side length should be positive number");
+            System.exit(6);
+        }
         System.out.println("Enter an integer value for side B");
         int sideB = scanner.nextInt();
+        if (sideB <= 0) {
+            System.out.println("Triangle side length should be positive number");
+            System.exit(6);
+        }
         System.out.println("Enter an integer value for side C");
         int sideC = scanner.nextInt();
+        if (sideC <= 0) {
+            System.out.println("Triangle side length should be positive number");
+            System.exit(6);
+        }
         if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA) {
             System.out.println("It is possible to make a triangle with sides " + sideA + "," + sideB + " and " + sideC);
         } else {
