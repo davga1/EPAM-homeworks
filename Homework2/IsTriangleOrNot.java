@@ -11,21 +11,11 @@ import java.util.Scanner;
 public class IsTriangleOrNot {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an integer value for side A");
+        System.out.println("Enter positive integer values for triangle sides");
         int sideA = scanner.nextInt();
-        if (sideA <= 0) {
-            System.out.println("Triangle side length should be positive number");
-            System.exit(6);
-        }
-        System.out.println("Enter an integer value for side B");
         int sideB = scanner.nextInt();
-        if (sideB <= 0) {
-            System.out.println("Triangle side length should be positive number");
-            System.exit(6);
-        }
-        System.out.println("Enter an integer value for side C");
         int sideC = scanner.nextInt();
-        if (sideC <= 0) {
+        if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
             System.out.println("Triangle side length should be positive number");
             System.exit(6);
         }
