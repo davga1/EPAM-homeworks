@@ -2,7 +2,7 @@
 
 package Homework1;
 import java.util.Scanner;
-public class Return_Uppercase_Letter {
+public class ReturnUppercaseLetter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter an english letter");
