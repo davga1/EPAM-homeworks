@@ -20,8 +20,13 @@ public class ChangeTwoNumbersInArray {
         System.out.println("Enter two integer numbers");
         int a = scanner.nextInt();
         int b = scanner.nextInt();
-        array[array.length / 2 - 1] = a;
-        array[array.length / 2 + 1] = b;
+        if (a < b) {
+            array[array.length / 2 - 1] = a;
+            array[array.length / 2 + 1] = b;
+        } else {
+            array[array.length / 2 - 1] = b;
+            array[array.length / 2 + 1] = a;
+        }
         System.out.println(Arrays.toString(array));
     }
 }

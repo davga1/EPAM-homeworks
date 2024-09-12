@@ -21,16 +21,8 @@ public class ArrayLengthDependingOnInput {
         }
         int[] array;
         switch (length) {
-            case 3: {
-                array = new int[3];
-                break;
-            }
-            case 4: {
-                array = new int[4];
-                break;
-            }
-            case 5: {
-                array = new int[5];
+            case 3, 4, 5: {
+                array = new int[length];
                 break;
             }
             case 6, 7: {
