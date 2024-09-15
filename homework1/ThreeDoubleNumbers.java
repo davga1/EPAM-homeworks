@@ -3,7 +3,7 @@
 //տպումա էդ 3 թվերի գումարի միայն տասնորդական մասը ( օրինակ՝ input 62.547, output -> 547)
 //տպումա էդ 3 թվերի ամբողջ մասերի գումարը
 
-package Homework1;
+package homework1;
 
 import java.util.Scanner;
 

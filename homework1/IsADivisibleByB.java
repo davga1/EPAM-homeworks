@@ -2,7 +2,7 @@
 //կտպի true, եթե a-ն բաժանվումա b-ի վրա առանց մնացորդ
 //կտպի false հակառակ դեպքում
 
-package Homework1;
+package homework1;
 
 import java.util.Scanner;
 
