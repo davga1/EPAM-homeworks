@@ -2,11 +2,11 @@
 //կտպի true, եթե a-ն բաժանվումա b-ի վրա առանց մնացորդ
 //կտպի false հակառակ դեպքում
 
-package Homework1;
+package homework1;
 
 import java.util.Scanner;
 
-public class IsADivisibleByB {
+public class Is_A_Divisible_By_B {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first number");

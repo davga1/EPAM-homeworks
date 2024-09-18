@@ -5,7 +5,7 @@
 //Եթե 6-ա, կամ 7, ուրեմն չափը պետքա լինի 10
 //Մնացած բոլոր դրական թվերի դեպքերում պետքա լինի 15 ու իրա առաջին անդամի արժեքն էլ հենց 15։
 
-package Homework3;
+package homework3_arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;

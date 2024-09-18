@@ -1,6 +1,6 @@
 //Գրեք ծրագիր, որը կընդունի որպես input ցանկացած անգլերեն փոքրատառ ու որպես արդյունք կտպի դրա մեծատառը։
 
-package Homework1;
+package homework1;
 import java.util.Scanner;
 public class ReturnUppercaseLetter {
     public static void main(String[] args) {

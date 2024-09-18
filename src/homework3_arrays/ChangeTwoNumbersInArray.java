@@ -3,7 +3,7 @@
 // Դրանից հետո պետքա ներմուծեք 2 թիվ` a ու b, որոնցից փոքրի արժեքը պետքա տաք մասիվի մեջտեղից
 // (երկարության կեսը՝ ամբողջ թվով) անմիջապես ձախ գտնվող անդամին, իսկ մեծը՝ մեջտեղից անմիջապես աջ գտնվող անդամին։
 
-package Homework3;
+package homework3_arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,8 +13,8 @@ public class ChangeTwoNumbersInArray {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter size for your array");
         int[] array = new int[scanner.nextInt()];
-        if (array.length > 8) {
-            System.out.println("Array length cannot be more than 8");
+        if (array.length > 8 || array.length < 3) {
+            System.out.println("Array length cannot be less than 3 and more than 8");
             System.exit(8);
         }
         System.out.println("Enter two integer numbers");
