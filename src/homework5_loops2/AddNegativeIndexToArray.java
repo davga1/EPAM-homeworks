@@ -23,25 +23,23 @@ public class AddNegativeIndexToArray {
             System.out.println("Enter a value for array's index N" + i);
             array[i] = scanner.nextInt();
         }
-        int[] newArray = new int[array.length + 1];
-        boolean containsNegative = false;
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < array.length; i++) {
             if (array[i] < 0) {
                 index = i;
-                containsNegative = true;
                 break;
             }
         }
-        if (containsNegative) {
+        if (index >= 0) {
+            int[] newArray = new int[array.length + 1];
             System.out.println("INDEX:" + index);
             newArray[index + 1] = index;
             for (int i = 0; i < newArray.length; i++) {
                 if (i == index + 1) continue;
                 newArray[i] = i > index ? array[i - 1] : array[i];
             }
+            array = newArray;
         }
-        array = containsNegative ? newArray : array;
         System.out.println(Arrays.toString(array));
     }
 }

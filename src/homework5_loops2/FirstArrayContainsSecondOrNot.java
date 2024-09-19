@@ -12,9 +12,8 @@ import java.util.Scanner;
 
 public class FirstArrayContainsSecondOrNot {
     public static void main(String[] args) {
-        boolean containsSecondArray = false;
+        boolean containsSecondArray = true;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Set length for first array");
         int length1;
         do {
             System.out.println("Set length for first array, only positive number");
@@ -42,15 +41,13 @@ public class FirstArrayContainsSecondOrNot {
 
         int firstIndex = -1;
         for (int i = 0; i < array2.length; i++) {
-            boolean match = false;
             for (int j = 0; j < array1.length; j++) {
                 if (array2[i] == array1[j]) {
                     firstIndex = j;
-                    match = true;
                     break;
                 }
             }
-            if (match) {
+            if (firstIndex >= 0) {
                 if (firstIndex + array2.length - 1 >= array1.length) {
                     containsSecondArray = false;
                 } else {
@@ -59,11 +56,13 @@ public class FirstArrayContainsSecondOrNot {
                             containsSecondArray = false;
                             break;
                         }
-                        containsSecondArray = true;
                     }
                 }
                 break;
             }
+        }
+        if (firstIndex == -1) {
+            containsSecondArray = false;
         }
         System.out.println(containsSecondArray);
     }
