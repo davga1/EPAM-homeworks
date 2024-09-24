@@ -8,15 +8,16 @@ public class MatrixDiagonalSum {
 
     static int matrixElementsSum(int[][] matrix) {
         int sum = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
+        int length = matrix.length;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
                 if (i == j) {
-                    sum += matrix[i][j]; // or I can just do sum+= matrix[i][j] * 2, 'cause matrix's diagonal elements sum is always the same
-                    sum += matrix[matrix.length - 1 - i][matrix.length - 1 - j];
+                    sum += matrix[i][j];
+                    sum += matrix[length - 1 - i][length - 1 - j];
                 }
             }
         }
-        return sum;
+        return length % 2 == 0 ? sum : sum - matrix[length / 2][length / 2];
     }
 
     public static void main(String[] args) {
@@ -24,7 +25,6 @@ public class MatrixDiagonalSum {
         int matrixSize = scanner.nextInt();
         int[][] matrix = new int[matrixSize][matrixSize];
         int k = 1; // number to be printed in array
-        //Creating a nxn matrix with numbers starting from 1. I am pretty sure you are too lazy to set elements for 10x10 matrix
         System.out.println("Your matrix is");
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
