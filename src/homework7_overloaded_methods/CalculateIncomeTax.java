@@ -12,24 +12,27 @@ public class CalculateIncomeTax {
         if (grossSalary < 0) {
             grossSalary *= -1;
         }
-        return grossSalary - (grossSalary * 20.0) / 100;
+        return (grossSalary * 20.0) / 100;
     }
 
     static double calculateIncomeTax(int grossSalary, double taxRate) {
         if (taxRate <= 0) {
             taxRate = 20;
         }
-        return grossSalary - (grossSalary * taxRate) / 100;
+        if (grossSalary < 0) {
+            grossSalary *= -1;
+        }
+        return (grossSalary * taxRate) / 100;
     }
 
     static double calculateIncomeTax(int grossSalary, boolean isFromIT) {
         if (grossSalary < 0) {
             grossSalary *= -1;
         }
-        return isFromIT ? grossSalary - (grossSalary * 10.0) / 100 : grossSalary - (grossSalary * 20.0) / 100;
+        return isFromIT ? (grossSalary * 10.0) / 100 : (grossSalary * 20.0) / 100;
     }
 
     public static void main(String[] args) {
-        System.out.println(calculateIncomeTax(-15000, false));
+        System.out.println(calculateIncomeTax(-15000));
     }
 }

@@ -10,9 +10,6 @@ public class ConvertTemperature {
         if (temperatureInCelsius < -273.15) { //absolute zero
             return -459.67;
         }
-        if (temperatureInCelsius > 56.7) {//highest registered temperature on Earth
-            return 132.8;
-        }
         return temperatureInCelsius * 9 / 5 + 32;
     }
 
@@ -20,14 +17,11 @@ public class ConvertTemperature {
         if (temperatureInFahrenheit < -459.67) {
             return -273;
         }
-        if (temperatureInFahrenheit > 132.8) {
-            return 56.7;
-        }
         return ((temperatureInFahrenheit - 32) * 5 / 9);
     }
 
     public static void main(String[] args) {
-        float temperatureInCelsius = 56.7f;
+        float temperatureInCelsius = 66f;
         double temperatureInFahrenheit = -459.4;
         System.out.println(temperatureInCelsius + " Celsius is " + convertTemperature(temperatureInCelsius) + " Fahrenheit");
         System.out.println(temperatureInFahrenheit + " Fahrenheit is " + convertTemperature(temperatureInFahrenheit) + " Celsius");
