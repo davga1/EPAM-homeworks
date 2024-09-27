@@ -8,11 +8,12 @@ package homework7_overloaded_methods;
 
 public class CalculateIncomeTax {
 
+    public static void main(String[] args) {
+        System.out.println(calculateIncomeTax(-15000, true));
+    }
+
     static double calculateIncomeTax(int grossSalary) {
-        if (grossSalary < 0) {
-            grossSalary *= -1;
-        }
-        return (grossSalary * 20.0) / 100;
+        return calculateIncomeTax(grossSalary, 20);
     }
 
     static double calculateIncomeTax(int grossSalary, double taxRate) {
@@ -26,13 +27,7 @@ public class CalculateIncomeTax {
     }
 
     static double calculateIncomeTax(int grossSalary, boolean isFromIT) {
-        if (grossSalary < 0) {
-            grossSalary *= -1;
-        }
-        return isFromIT ? (grossSalary * 10.0) / 100 : (grossSalary * 20.0) / 100;
+        return isFromIT ? calculateIncomeTax(grossSalary, 10) : calculateIncomeTax(grossSalary, 20);
     }
 
-    public static void main(String[] args) {
-        System.out.println(calculateIncomeTax(-15000));
-    }
 }

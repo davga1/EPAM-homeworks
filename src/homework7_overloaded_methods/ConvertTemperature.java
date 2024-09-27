@@ -6,14 +6,14 @@ package homework7_overloaded_methods;
 
 public class ConvertTemperature {
 
-    static double convertTemperature(float temperatureInCelsius) {
+    static double convertTemperature(double temperatureInCelsius) {
         if (temperatureInCelsius < -273.15) { //absolute zero
             return -459.67;
         }
         return temperatureInCelsius * 9 / 5 + 32;
     }
 
-    static double convertTemperature(double temperatureInFahrenheit) {
+    static double convertTemperature(double temperatureInFahrenheit, boolean isFahrenheit) {
         if (temperatureInFahrenheit < -459.67) {
             return -273;
         }
@@ -21,10 +21,9 @@ public class ConvertTemperature {
     }
 
     public static void main(String[] args) {
-        float temperatureInCelsius = 66f;
-        double temperatureInFahrenheit = -459.4;
+        float temperatureInCelsius = 66;
+        double temperatureInFahrenheit = 150.8;
         System.out.println(temperatureInCelsius + " Celsius is " + convertTemperature(temperatureInCelsius) + " Fahrenheit");
-        System.out.println(temperatureInFahrenheit + " Fahrenheit is " + convertTemperature(temperatureInFahrenheit) + " Celsius");
-        System.out.println(convertTemperature(132.8));
+        System.out.println(temperatureInFahrenheit + " Fahrenheit is " + convertTemperature(temperatureInFahrenheit,true) + " Celsius");
     }
 }
