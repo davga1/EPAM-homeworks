@@ -51,7 +51,8 @@ public class Computer {
     public void setRAM(int RAM) {
         this.RAM = RAM;
     }
-    static Computer generateMegaComputer(Computer computer, int memory, int RAM){
+
+    static Computer generateMegaComputer(Computer computer, int memory, int RAM) {
         computer.setMemory(memory);
         computer.setRAM(RAM);
         return computer;
