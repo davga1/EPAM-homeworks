@@ -1,6 +1,6 @@
 package homework12_zoo;
 
-public class Elephant implements Animal {
+public class Elephant implements Animal, PerformTrick {
     private String name;
     private int age;
 

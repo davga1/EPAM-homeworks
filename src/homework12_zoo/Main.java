@@ -13,7 +13,9 @@ public class Main {
         for (Animal animal : b) {
             animal.makeSound();
             animal.eat();
-            animal.performTrick();
+            if (animal instanceof PerformTrick) {
+                ((PerformTrick) animal).performTrick();
+            }
             System.out.println("-----------------------------");
         }
     }

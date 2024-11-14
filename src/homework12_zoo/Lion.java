@@ -18,9 +18,4 @@ public class Lion implements Animal {
     public void eat() {
         System.out.println("The lion " + name + " is " + age + " years old and he is eating");
     }
-
-    @Override
-    public void performTrick() {
-        System.out.println("Lion does not make any trick");
-    }
 }
