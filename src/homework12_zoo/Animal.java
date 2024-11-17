@@ -9,13 +9,9 @@ abstract class Animal {
         this.age = age;
     }
 
-    public void makeSound() {
-        System.out.println("Animal is making sound");
-    }
+    abstract void makeSound();
 
-    public void eat() {
-        System.out.println("Animal is eating");
-    }
+    abstract void eat();
 
 
     public String getName() {
