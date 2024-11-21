@@ -4,16 +4,16 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        FrontEndDeveloper a = new FrontEndDeveloper("a", new String[]{"asd", "sdad"});
-        FullStackDeveloper b = new FullStackDeveloper("b", new String[]{"dsadas", "sdasdd"});
-        TestAutomationEngineer c = new TestAutomationEngineer("c", new String[]{"sadwqe,xzvb"});
-        ProjectManager d = new ProjectManager("d", new String[]{"asdasd", "das"});
-        ITWorker arr[] = {a, b, c, d};
+        FrontEndDeveloper frontDev = new FrontEndDeveloper("Armen", new String[]{"asd", "sdad"});
+        FullStackDeveloper fullStackDev = new FullStackDeveloper("Babken", new String[]{"dsadas", "sdasdd"});
+        TestAutomationEngineer qaDev = new TestAutomationEngineer("Chris", new String[]{"sadwqe,xzvb"});
+        ProjectManager poManager = new ProjectManager("Dennis", new String[]{"asdasd", "das"});
+        ITWorker arr[] = {frontDev, fullStackDev, qaDev, poManager};
         for (ITWorker worker : arr) {
             System.out.println("-------------------");
             worker.doesWork();
         }
-        Developer arr2[] = {a, b, c};
+        Developer arr2[] = {frontDev, fullStackDev, qaDev};
         for (Developer dev : arr2) {
             System.out.println("-------------------");
             dev.doHealthCheck();
