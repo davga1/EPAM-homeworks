@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        FrontEndDeveloper frontDev = new FrontEndDeveloper("Armen", new String[]{"asd", "sdad"});
-        FullStackDeveloper fullStackDev = new FullStackDeveloper("Babken", new String[]{"dsadas", "sdasdd"});
-        TestAutomationEngineer qaDev = new TestAutomationEngineer("Chris", new String[]{"sadwqe,xzvb"});
-        ProjectManager poManager = new ProjectManager("Dennis", new String[]{"asdasd", "das"});
-        ITWorker arr[] = {frontDev, fullStackDev, qaDev, poManager};
+        FrontEndDeveloper frontDev = new FrontEndDeveloper("Armen", new String[]{"HTML", "CSS"});
+        FullStackDeveloper fullStackDev = new FullStackDeveloper("Babken", new String[]{"API development", "Frameworks"});
+        TestAutomationEngineer qaDev = new TestAutomationEngineer("Chris", new String[]{"Testing, PRoblem solving"});
+        ProjectManager poManager = new ProjectManager("Dennis", new String[]{"Market Sensitivity", "User-Centric Design Approach"});
+        ITWorker[] arr = {frontDev, fullStackDev, qaDev, poManager};
         for (ITWorker worker : arr) {
             System.out.println("-------------------");
             worker.doesWork();
