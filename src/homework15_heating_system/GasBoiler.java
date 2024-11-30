@@ -1,9 +1,9 @@
 package homework15_heating_system;
 
-public class GasBoiler extends Boiler {
+public class GasBoiler extends Boiler implements ContainsGasEnergyContent, GasUsable {
 
-    protected GasBoiler(String firm, String type, double volumeOfBoiler, double gasEnergyContent) {
-        super(firm, type, volumeOfBoiler, 0.85, gasEnergyContent);
+    protected GasBoiler(String firm, String type, double volumeOfBoiler) {
+        super(firm, type, volumeOfBoiler, 0.85);
     }
 
     @Override
@@ -15,4 +15,17 @@ public class GasBoiler extends Boiler {
     public double getElectricityPriceForOneCubicMeterOfWater() {
         return 46.2;
     }
+
+    @Override
+    public double getGasEnergyContent() {
+        return 9.5;
+    }
+
+    public double getGasCost(double area, double heatLostCoefficient, double desiredTemperature, double averageTemperature, int daysInMonth) {
+        double requiredHeat = area * heatLostCoefficient * (desiredTemperature - averageTemperature);
+        double gasConsumption = (requiredHeat / (getBoilerEfficiency() * getGasEnergyContent()) * daysInMonth);
+        double gasCost = gasConsumption * getGasPriceForOneCubicMeter();
+        return gasCost;
+    }
+
 }

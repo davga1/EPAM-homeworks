@@ -5,16 +5,12 @@ public abstract class Boiler {
     private final String type;
     private final double volumeOfBoiler;
     private final double boilerEfficiency;
-    private final double gasEnergyContent;
-
-    public abstract double getGasPriceForOneCubicMeter();
 
     public abstract double getElectricityPriceForOneCubicMeterOfWater();
 
-    protected Boiler(String firm, String type, double volumeOfBoiler, double boilerEfficiency, double gasEnergyContent) {
+    protected Boiler(String firm, String type, double volumeOfBoiler, double boilerEfficiency) {
         this.firm = firm;
         this.type = type;
-        this.gasEnergyContent = gasEnergyContent;
         this.boilerEfficiency = boilerEfficiency;
         this.volumeOfBoiler = volumeOfBoiler;
     }
@@ -35,7 +31,11 @@ public abstract class Boiler {
         return type;
     }
 
-    public double getGasEnergyContent() {
-        return gasEnergyContent;
+    public double getMonthlyElectricityCost(int daysInMonth, double electricityPower) {
+        double dailyElectricityConsumption = electricityPower * 8; //8 hours per day
+        double monthlyElectricityConsumption = dailyElectricityConsumption * daysInMonth;
+        double monthlyElectricityCost = monthlyElectricityConsumption * getElectricityPriceForOneCubicMeterOfWater();
+        return monthlyElectricityCost;
     }
+
 }

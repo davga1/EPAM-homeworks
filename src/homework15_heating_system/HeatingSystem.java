@@ -1,7 +1,7 @@
 package homework15_heating_system;
 
 public abstract class HeatingSystem {
-    private Boiler boiler;
+    private final Boiler boiler;
     private final double area;
     private final double heatLostCoefficient;
     private final double desiredTemperature;
@@ -39,21 +39,13 @@ public abstract class HeatingSystem {
         return electricityPower;
     }
 
-    public double getMonthlyGasCost(int daysInMonth) {
-        if (getBoiler().getGasPriceForOneCubicMeter() == 0) {
-            return 0;
+    public void getCost(int daysInMonth) {
+        double gasPrice = -1;
+        double electricityPrice;
+        if (getBoiler() instanceof GasBoiler) {
+            gasPrice = ((GasBoiler) getBoiler()).getGasCost(getArea(), getHeatLostCoefficient(), getDesiredTemperature(), getAverageTemperature(), daysInMonth);
         }
-
-        double requiredHeat = getArea() * getHeatLostCoefficient() * (getDesiredTemperature() - getAverageTemperature());
-        double gasConsumption = (requiredHeat / (getBoiler().getBoilerEfficiency() * getBoiler().getGasEnergyContent()) * daysInMonth);
-        double gasCost = gasConsumption * getBoiler().getGasPriceForOneCubicMeter();
-        return gasCost;
-    }
-
-    public double getMonthlyElectricityCost(int daysInMonth, int hoursPerDay) {
-        double dailyElectricityConsumption = getElectricityPower() * hoursPerDay;
-        double monthlyElectricityConsumption = dailyElectricityConsumption * daysInMonth;
-        double monthlyElectricityCost = monthlyElectricityConsumption * getBoiler().getElectricityPriceForOneCubicMeterOfWater();
-        return monthlyElectricityCost;
+        electricityPrice = getBoiler().getMonthlyElectricityCost(daysInMonth, getElectricityPower());
+        System.out.println("Monthly electricity price:" + electricityPrice + (gasPrice > 0 ? ",Monthly gas price:" + gasPrice : " "));
     }
 }
