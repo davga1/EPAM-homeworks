@@ -17,7 +17,7 @@ public abstract class Item {
     }
 
     public void setId(int id) {
-        this.id = id; // Allow explicit setting of ID
+        this.id = id;
     }
 
     public int getPrice() {

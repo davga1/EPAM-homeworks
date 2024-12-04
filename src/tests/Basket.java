@@ -4,11 +4,11 @@ import homework16_items_shop.items.*;
 
 import java.util.Arrays;
 
-public abstract class Basket {
+public class Basket {
     private Item[] basket;
     private Item[] gifts;
 
-    public Basket() {
+    protected Basket() {
         this.basket = new Item[0];
         this.gifts = new Item[0];
     }
@@ -71,16 +71,41 @@ public abstract class Basket {
     }
 
     public void deleteGiftFromGiftList(int id) {
+        boolean idFound = false;
+        for (Item gift : gifts) {
+            if (gift.getId() == id) {
+                idFound = true;
+                break;
+            }
+        }
+
+        if (!idFound) {
+            System.out.println("Error: No gift with the specified ID found.");
+            return;
+        }
+
         int index = 0;
         Item[] newList = new Item[gifts.length - 1];
         for (Item gift : gifts) {
             if (gift.getId() != id) {
-                if (index < newList.length) {
-                    newList[index++] = gift;
-                }
+                newList[index++] = gift;
             }
         }
         gifts = newList;
+    }
+
+
+    public void deleteItemFromBasket(int id) {
+        int index = 0;
+        Item[] newList = new Item[basket.length - 1];
+        for (Item item : basket) {
+            if (item.getId() != id) {
+                if (index < newList.length) {
+                    newList[index++] = item;
+                }
+            }
+        }
+        basket = newList;
     }
 
 
