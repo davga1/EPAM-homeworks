@@ -1,8 +1,8 @@
 package homework16_items_shop.customer;
 
 import homework16_items_shop.Items;
-import tests.exceptions.MoreGiftsThanExpectedException;
-import tests.exceptions.NotEnoughBalanceException;
+import homework16_items_shop.exceptions.MoreGiftsThanExpectedException;
+import homework16_items_shop.exceptions.NotEnoughBalanceException;
 
 import java.util.Arrays;
 
