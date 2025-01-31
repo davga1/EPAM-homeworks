@@ -5,6 +5,7 @@ import homework20_maps.exceptions.IncorrectFloorException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Building {
     private final int numberOfFloors;
@@ -21,6 +22,19 @@ public class Building {
         }
         Collections.sort(houses);
         this.houses = houses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return numberOfFloors == building.numberOfFloors && numberOfParkingFloors == building.numberOfParkingFloors && Objects.equals(houses, building.houses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberOfFloors, numberOfParkingFloors, houses);
     }
 
     @Override

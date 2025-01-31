@@ -2,6 +2,8 @@
 
 package homework20_maps;
 
+import java.util.Objects;
+
 public class House implements Comparable<House> {
     private final int numberOfRooms;
     private final double area;
@@ -21,10 +23,21 @@ public class House implements Comparable<House> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        House house = (House) o;
+        return numberOfRooms == house.numberOfRooms && Double.compare(area, house.area) == 0 && containsBalcony == house.containsBalcony && floor == house.floor;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberOfRooms, area, containsBalcony, floor);
+    }
+
+    @Override
     public String toString() {
-        return "\nHouse has " + numberOfRooms + " room" +(numberOfRooms == 1 ? "" : "s")+", area is " + area + " m^2, "
-                + (containsBalcony ? "Contains a balcony" : "Does not contain a balcony")
-                + ", located on floor " + floor;
+        return "\nHouse has " + numberOfRooms + " room" + (numberOfRooms == 1 ? "" : "s") + ", area is " + area + " m^2, " + (containsBalcony ? "Contains a balcony" : "Does not contain a balcony") + ", located on floor " + floor;
     }
 
     @Override
