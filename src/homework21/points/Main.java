@@ -8,9 +8,9 @@ public class Main {
     //Գրեք մի հատ մեթոդ, որը կունենա մի պարամետր, ու որին որպես արգումենտ հնարավոր կլինի փոխանցել նախորդ խնդրում սարքված map-երը,
     // ու որը հետ կվերադարձնի դրանց key ու value-ները տեղերով փոխած map-եր։
     // Հետո պետքա տպել էդ map-երն ու վստահ լինել, որ ամեն ինչ ճիշտա արվել։
-    public static Map<String, Point> swapMaps(Map<Point, String> map) {
-        Map<String, Point> temp = new HashMap<>();
-        for (Map.Entry<Point, String> mapValue : map.entrySet()) {
+    public static <K, V> Map<V, K> swapKeysAndValues(Map<K, V> map) {
+        Map<V, K> temp = new HashMap<>();
+        for (Map.Entry<K, V> mapValue : map.entrySet()) {
             temp.put(mapValue.getValue(), mapValue.getKey());
         }
         return temp;
@@ -29,6 +29,6 @@ public class Main {
         System.out.println("----------------------------");
         System.out.println(treeMap);
         System.out.println("----------------------------");
-        System.out.println(swapMaps(treeMap));
+        System.out.println(swapKeysAndValues(treeMap));
     }
 }
