@@ -1,5 +1,8 @@
 package homework22;
 
+import homework22.exceptions.NullValueException;
+import homework22.exceptions.ZeroDivisionException;
+
 public class Main {
     public static void main(String[] args) {
         Calculator sum1 = (num1, num2) -> {
@@ -38,7 +41,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
         try {
-
             System.out.println("Using method reference");
             System.out.println(sum2.calculate(1.3, 6));
             System.out.println(sub2.calculate(6, 88));
