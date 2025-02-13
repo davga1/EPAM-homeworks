@@ -30,9 +30,6 @@ public class Student {
         this.birthYear = birthYear;
     }
 
-    public void a() {
-    }
-
     public double getGrade() {
         return grade;
     }
@@ -49,20 +46,8 @@ public class Student {
         return name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setBirthYear(String birthYear) {
-        this.birthYear = birthYear;
-    }
-
     public void setGrade(double grade) {
         this.grade = grade;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void upgradeGradeForStudent() {
