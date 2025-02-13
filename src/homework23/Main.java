@@ -33,10 +33,10 @@ public class Main {
         System.out.print("}");
     }
 
-    static Function<String, Integer> getYear = Integer::parseInt;
 
     //Օգտագործել Function ֆունկցիոնալ ինտերֆեյսը և Integer::parseInt, որպեսզի փոխակերպեք birthYear-ը int և հաշվեք ուսանողի տարիքը։
     static Integer getStudentAge(Student student) {
+        Function<String, Integer> getYear = Integer::parseInt;
         return 2025 - getYear.apply(student.getBirthYear());
     }
 
