@@ -33,11 +33,13 @@ public class Main {
         System.out.print("}");
     }
 
+    static Function<String, Integer> getYear = Integer::parseInt;
+
     //Օգտագործել Function ֆունկցիոնալ ինտերֆեյսը և Integer::parseInt, որպեսզի փոխակերպեք birthYear-ը int և հաշվեք ուսանողի տարիքը։
-    static Function<Student, Integer> getStudentAge = (student) -> {
-        int birthYear = Integer.parseInt(student.getBirthYear());
-        return 2025 - birthYear;
-    };
+    static Integer getStudentAge(Student student) {
+        return 2025 - getYear.apply(student.getBirthYear());
+    }
+
 
     public static void main(String[] args) {
         Consumer<Student> studentConsumer = student -> System.out.println(student.getName() + "," + student.getBirthYear() + "," + student.getAge() + "," + student.getGrade());
@@ -55,6 +57,6 @@ public class Main {
         System.out.println("After upgrading grades");
         processStudents(listOfStudents, studentConsumer);
         printBestStudents(listOfStudents);
-        System.out.println(getStudentAge.apply(student));
+        System.out.println(getStudentAge(student));
     }
 }
