@@ -2,61 +2,73 @@ package homework3;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffAMCompaniesPage extends BaseActions {
-    ;
+public class StaffAMCompaniesPage extends StaffAMBasePage {
+    private WebDriverWait wait;
     private final By viewMoreLocator = By.xpath("//div[contains(text(),'Filter By Industry')]/following-sibling::div[last()]");
     private final By sportsSectionLocator = By.xpath("//div[contains(text(),'Filter By Industry')]/following-sibling::div//span[contains(text(), 'Sport') and not(contains(text(),'Betting'))]");
 
-
-    private final By resultsCountLocator = By.xpath("//img[@alt='building']//following-sibling::div");
+    private final By companiesLocator = By.xpath("//img[@alt='building']/ancestor::div[2]/div[4]/div/div");
     private final By hiringButtonLocator = By.xpath("//div[contains(text(),'Hiring')]");
 
-
-    private final String nameLocator = "(//img[@alt='company-logo']/following-sibling::div/div/div/div[text()])";
-    private final String pageViewCountLocator = "(//img[@alt='eye-icon']//following-sibling::div)";
-    private final String followerCountLocator = "(//img[@alt='people-icon']//following-sibling::div)";
-    private final String activeJobsCountLocator = "(//img[@alt='active-jobs']//following-sibling::div)";
-    private final String jobHistoryNumberLocator = "(//img[@alt='timer' ]//following-sibling::div)";
-
+    private final By elementsCount = By.xpath("//img[@alt=\"building\"]/following-sibling::div");
 
     StaffAMCompaniesPage(WebDriver driver) {
         super(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void clickOnViewMoreLocator() {
         click(viewMoreLocator);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(sportsSectionLocator));
     }
 
     public void clickOnSportsSectionLocator() {
+        int num = Integer.parseInt(getText(elementsCount));
+        System.out.println(num);
         click(sportsSectionLocator);
+        wait.until(ExpectedConditions.numberOfElementsToBeLessThan(companiesLocator,num));
     }
 
-    public int getCompaniesCount() {
-        return Integer.parseInt(getText(resultsCountLocator));
+    public Company getCompanyDetails(String details) {
+        String[] splittedDetails = details.split("\n");
+        String companyName = splittedDetails[0];
+        int pageViewCount = Integer.parseInt(splittedDetails[1].split(" ")[0]);
+        int followersCount = Integer.parseInt(splittedDetails[2].split(" ")[0]);
+        int activeJobsCount = Integer.parseInt(splittedDetails[3].split(" ")[0]);
+        int jobHistory = Integer.parseInt(splittedDetails[4].split(" ")[0]);
+
+        return new Company(companyName, pageViewCount, followersCount, activeJobsCount, jobHistory);
     }
 
     public List<Company> getCompaniesList() {
-        int count = getCompaniesCount();
-        List<Company> companies = new ArrayList<>();
-        for (int i = 1; i < count + 1; i++) {
-            String companyName = getText(By.xpath(nameLocator + "[" + i + "]"));
-            By companyPageViewCountLocator = By.xpath(pageViewCountLocator + "[" + i + "]");
-            By companyFollowerCountLocator = By.xpath(followerCountLocator + "[" + i + "]");
-            By companyActiveJobsLocator = By.xpath(activeJobsCountLocator + "[" + i + "]");
-            By companyJobHistoryNumberLocator = By.xpath(jobHistoryNumberLocator + "[" + i + "]");
-            companies.add(new Company(companyName, Integer.parseInt(getText(companyPageViewCountLocator).split(" ")[0]),
-                    Integer.parseInt(getText(companyFollowerCountLocator).split(" ")[0]),
-                    Integer.parseInt(getText(companyActiveJobsLocator).split(" ")[0]),
-                    Integer.parseInt(getText(companyJobHistoryNumberLocator).split(" ")[0])));
+        List<WebElement> companies = getCompanies(companiesLocator);
+        List<Company> companiesList = new ArrayList<>();
+        for (int i = 0; i < companies.size() - 1; i++) {
+            String text = companies.get(i).getText();
+            if (!text.isEmpty()) {
+                companiesList.add(getCompanyDetails(text));
+            }
         }
-        return companies;
+        return companiesList;
     }
 
     public void clickOnHiringButton() {
         click(hiringButtonLocator);
+    }
+
+    public boolean areCompanyListsEqual(List<Company> list1, List<Company> list2) {
+        return list1.equals(list2);
+    }
+
+    public List<WebElement> getCompanies(By locator) {
+        return getWebElements(locator);
     }
 }

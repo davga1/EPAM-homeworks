@@ -3,10 +3,10 @@ package homework3;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class StaffAMMainPage extends BaseActions {
+public class StaffAMBasePage extends BaseActions {
     protected Header header;
     protected Footer footer;
-    StaffAMMainPage(WebDriver driver) {
+    StaffAMBasePage(WebDriver driver) {
         super(driver);
         this.header = new Header();
         this.footer = new Footer();

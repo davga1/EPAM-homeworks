@@ -4,13 +4,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+import java.time.Duration;
 import java.util.List;
 
 public class StaffAMTest2 {
     private WebDriver driver;
+
     @BeforeEach
     public void setup() {
         driver = DriverManager.getDriver();
@@ -25,27 +29,29 @@ public class StaffAMTest2 {
 
     @Test
     public void test() throws InterruptedException {
-        StaffAMMainPage mainPage = new StaffAMMainPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        StaffAMBasePage mainPage = new StaffAMBasePage(driver);
         StaffAMCompaniesPage companiesPage = new StaffAMCompaniesPage(driver);
         mainPage.click(mainPage.header.companiesLocator);
-        Thread.sleep(1500);
         companiesPage.clickOnViewMoreLocator();
-        Thread.sleep(500);
         companiesPage.clickOnSportsSectionLocator();
-        Thread.sleep(1500);
-        List<Company> allCompaniesList = companiesPage.getCompaniesList();
+        List<Company> allCompaniesList1 = companiesPage.getCompaniesList();
+        System.out.println(allCompaniesList1);
         companiesPage.clickOnHiringButton();
-        Thread.sleep(2000);
-        List<Company> hiringCompaniesList = companiesPage.getCompaniesList();
-        mainPage.click(mainPage.footer.viewAllCompaniesLocator);
+        Thread.sleep(1500);
+        List<Company> hiringCompaniesList1 = companiesPage.getCompaniesList();
+        companiesPage.click(companiesPage.footer.viewAllCompaniesLocator);
         Thread.sleep(1500);
         companiesPage.clickOnSportsSectionLocator();
-        Thread.sleep(1500);
+//        Thread.sleep(1500);
         List<Company> allCompaniesList2 = companiesPage.getCompaniesList();
+//        Thread.sleep(1500);
         companiesPage.clickOnHiringButton();
-        Thread.sleep(2000);
+//        Thread.sleep(1500);
         List<Company> hiringCompaniesList2 = companiesPage.getCompaniesList();
-        Assertions.assertTrue(companiesPage.areCompanyListsEqual(allCompaniesList, allCompaniesList2));
-        Assertions.assertTrue(companiesPage.areCompanyListsEqual(hiringCompaniesList, hiringCompaniesList2));
+        System.out.println(allCompaniesList1.size() + "  1");
+        System.out.println(allCompaniesList2.size() + "  2");
+        Assertions.assertTrue(companiesPage.areCompanyListsEqual(allCompaniesList1,allCompaniesList2));
+        Assertions.assertTrue(companiesPage.areCompanyListsEqual(hiringCompaniesList1,hiringCompaniesList2));
     }
 }
