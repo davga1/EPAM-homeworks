@@ -41,34 +41,28 @@ public class JobPage {
     @FindBy(xpath = "//div[contains(text(),\"Clear filters\")]/parent::div")
     WebElement clearFiltersButton;
 
-    public void clearAllFilters() {
-        actions.moveToElement(clearFiltersButton).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(clearFiltersButton));
-        clearFiltersButton.click();
+    public void clickOn(WebElement element) throws InterruptedException {
+        scrollToElement(element);
+        element.click();
+        Thread.sleep(1500);
     }
 
-    private void scrollTo(WebElement element) {
-        actions.moveToElement(element).perform();
+    public void clearAllFilters() throws InterruptedException {
+        scrollToElement(clearFiltersButton);
+        clearFiltersButton.click();
+        Thread.sleep(1500);
+    }
+
+    private void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", element);
+        wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    private void scrollTo(int x, int y) {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(" + x + ", " + y + ");");
-    }
-
-    public void clickOnAllViewMoreButtons() throws InterruptedException {
+    public void clickOnAllViewMoreButtons(){
         for (WebElement e : viewMoreButton) {
-            while (true) {
-                try {
-                    scrollTo(e);
-                    wait.until(ExpectedConditions.elementToBeClickable(e));
-                    e.click();
-                    break;
-                } catch (Exception ex) {
-                    scrollTo(0, 1000);
-                    Thread.sleep(200);
-                }
-            }
+            scrollToElement(e);
+            e.click();
         }
     }
 
@@ -76,24 +70,27 @@ public class JobPage {
         return companyLocator.size();
     }
 
-    public int[] getCounts(String name) throws InterruptedException {
+    public int[] getCountOfCompanies(String name) throws InterruptedException {
         String actualName = name.replaceAll("\\s*\\(.*\\)", "");
         String actualNumber = name.replaceAll(".*\\((\\d+)\\).*", "$1");
+        int actualNumberIntValue = Integer.parseInt(actualNumber);
         String path = "//span[contains(text(),\"" + actualName + "\")]";
         WebElement el = driver.findElement(By.xpath(path));
-        String[] b = el.getText().split(" ");
-        int advertisementCount = Integer.parseInt(b[b.length - 1].replaceFirst("\\(", "").replaceFirst("\\)", ""));
+        String[] elementsList = el.getText().split(" ");
+        int advertisementCount = Integer.parseInt(elementsList[elementsList.length - 1]
+                .replaceFirst("\\(", "").replaceFirst("\\)", ""));
         int count = 0;
-        scrollTo(el);
-        System.out.println(el.getLocation() + "-----------------");
-        el.click();
-        Thread.sleep(4000);
-        if (Integer.parseInt(actualNumber) > 50) {
-            scrollTo(navigationButtons.get(0));
+        scrollToElement(el);
+        clickOn(el);
+//        Thread.sleep(4000);
+        if (actualNumberIntValue > 50) {
+            scrollToElement(navigationButtons.get(0));
             navigationButtons.get(navigationButtons.size() - 2).click();
+            Thread.sleep(2500);
             System.out.println(navigationButtons.get(navigationButtons.size() - 2).getText() + " sdasdasdasdasda");
             count = (Integer.parseInt(navigationButtons.get(navigationButtons.size() - 3).getText())) * 50;
-            Thread.sleep(2500);
+        } else {
+            Thread.sleep(1500);
         }
         count += getCompaniesCountOnPage();
         System.out.println(actualName);
@@ -103,22 +100,22 @@ public class JobPage {
     }
 
     public boolean validateCount(String name) throws InterruptedException {
-        int[] a = getCounts(name);
+        int[] a = getCountOfCompanies(name);
         int advertisementCount = a[0];
         int count = a[1];
         return advertisementCount == count;
     }
 
     public boolean validateCount(String name1, String name2) throws InterruptedException {
-        int[] a = getCounts(name1);
+        int[] a = getCountOfCompanies(name1);
         int advertisementCount1 = a[0];
-        int[] b = getCounts(name2);
+        int[] b = getCountOfCompanies(name2);
         int advertisementCount2 = b[0];
-        int count2 = b[1];
+        int filteredCompaniesCount = b[1];
         System.out.println(advertisementCount1 + advertisementCount2 + " ADVSUMM ");
-        System.out.println(count2 + " COUNTSUMM");
+        System.out.println(filteredCompaniesCount + " COUNTSUMM");
         clearAllFilters();
         Thread.sleep(2000);
-        return advertisementCount1 + advertisementCount2 == count2;
+        return advertisementCount1 + advertisementCount2 == filteredCompaniesCount;
     }
 }
