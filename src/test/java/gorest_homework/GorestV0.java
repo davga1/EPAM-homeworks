@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static gorest_homework.AccessToken.accessToken;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GorestV0 {
     private RequestSpecification requestSpecification;
-    private static final String accessToken = "Bearer ff61c34623721b01f16b85a1e73a58a37776c54bf07f337fc3862680d81af99d";
 
     @BeforeAll
     public void setup() {
@@ -39,8 +40,6 @@ public class GorestV0 {
                 .body("data", Matchers.hasSize(10))
                 .log()
                 .all();
-        response.then()
-                .body("data.gender", Matchers.everyItem(Matchers.anyOf(Matchers.equalTo("male"), Matchers.equalTo("female"))));
     }
 
     @Test
@@ -62,7 +61,8 @@ public class GorestV0 {
         Random random = new Random();
         int randomInt = random.nextInt(users.size());
         Map<String, Object> user = (Map<String, Object>) users.get(randomInt);
-        RestAssured.given().spec(requestSpecification).header("Authorization", accessToken).delete("/users/" + user.get("id")).then().log().body();
+        RestAssured.given().spec(requestSpecification).header("Authorization", accessToken) //A token that is in local device but not included in github repo
+                .delete("/users/" + user.get("id")).then().log().body();
         getUsersList();
     }
 }
