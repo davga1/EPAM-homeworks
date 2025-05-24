@@ -1,6 +1,5 @@
 package homework4;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,9 +11,6 @@ import java.util.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestClass {
-    static {
-        System.setProperty("browser", "chrome");
-    }
 
     WebDriver driver = DriverSingleton.INSTANCE.getDriver();
     JobPage j = new JobPage(driver);
@@ -31,6 +27,7 @@ public class TestClass {
         DriverSingleton.INSTANCE.quitDriver();
     }
 
+    @Tag("ui")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6})
     public void a(int number) throws Exception {
