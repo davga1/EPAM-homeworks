@@ -12,12 +12,12 @@
         <allure.version>2.24.0</allure.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/davga1/EPAM-homeworks</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>github</id>-->
+<!--            <url>https://maven.pkg.github.com/davga1/EPAM-homeworks</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <distributionManagement>
         <repository>
