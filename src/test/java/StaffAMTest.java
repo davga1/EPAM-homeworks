@@ -2,10 +2,7 @@ import homework2.DriverManager;
 import homework2.pages.StaffAMCompanyPage;
 import homework2.pages.StaffAMMainPage;
 import homework2.pages.StaffAMSearchPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -49,6 +46,7 @@ public class StaffAMTest {
         DriverManager.quitDriver();
     }
 
+    @Tag("ui")
     @Test
     void test() throws InterruptedException {
         StaffAMMainPage mainPage = new StaffAMMainPage(driver);

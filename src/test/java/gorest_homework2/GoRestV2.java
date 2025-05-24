@@ -4,10 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +65,7 @@ public class GoRestV2 {
     //Հետո դրանցից վերցնում եք պատահական մեկի user_id-ն, ու տվյալ user-ի համար ստեղծում եք նոր գրառում (post)։
     //Հետո համապատասխան GET api-ն օգտագործելով համոզվում եք, որ տվյալ յուզերի համար իրոք էդ պոստը ստեղծվելա։
     //Էս սաղ մի թեստի մեջ պետքա լինի
+    @Tag("api")
     @Test
     public void addNewPost() {
         List<Post> posts = getPosts();
@@ -83,6 +81,7 @@ public class GoRestV2 {
     //PUT ռեքվեսթով ափդեյթ եք անում տվյալ յուզերին ու փոխում եք inactive-ը active-ի։
     //Հետո հենց էդ յուզերին GET եք անում ու համոզվում, որ իրոք ափդեյթա էղել ստատուսը։
 
+    @Tag("api")
     @Test
     public void getUsersAndChangeStatus() {
         List<User> users = getUsers();
@@ -97,6 +96,7 @@ public class GoRestV2 {
     //որոնք ոչ բոլորի data օբջեքթներում կան։ Պետքա ուսումնասիրեք, թե Jackson-ը ոնցա վերաբերում էն փռոփերթիներին deserialize անելուց, որոնք կարան չլինեն ռեսփոնսի մեջ, բայց կան dto-ում սահմանված, ու ոնցա դրանք deserialize անում
 
 
+    @Tag("api")
     @Test
     public void getDevices() {
         List<Device> devices = RestAssured.given().baseUri("https://api.restful-api.dev").get("/objects").jsonPath().getList("");
