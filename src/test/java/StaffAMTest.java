@@ -36,7 +36,7 @@ public class StaffAMTest {
 
     @BeforeEach
     public void setup() {
-        driver = DriverManager.getDriver();
+        driver = DriverManager.getDriver(System.getenv("BROWSER"));
         driver.get("https://staff.am");
         driver.manage().window().maximize();
     }
