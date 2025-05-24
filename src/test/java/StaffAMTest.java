@@ -1,4 +1,3 @@
-import homework2.DriverManager;
 import homework2.pages.StaffAMCompanyPage;
 import homework2.pages.StaffAMMainPage;
 import homework2.pages.StaffAMSearchPage;
