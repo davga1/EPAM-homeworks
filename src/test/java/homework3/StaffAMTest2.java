@@ -4,9 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -17,7 +15,7 @@ public class StaffAMTest2 {
 
     @BeforeEach
     public void setup() {
-        driver = DriverManager.getDriver();
+        driver = DriverManager.getDriver(System.getenv("BROWSER"));
         driver.get("https://staff.am");
         driver.manage().window().maximize();
     }
@@ -51,7 +49,7 @@ public class StaffAMTest2 {
         List<Company> hiringCompaniesList2 = companiesPage.getCompaniesList();
         System.out.println(allCompaniesList1.size() + "  1");
         System.out.println(allCompaniesList2.size() + "  2");
-        Assertions.assertTrue(companiesPage.areCompanyListsEqual(allCompaniesList1,allCompaniesList2));
-        Assertions.assertTrue(companiesPage.areCompanyListsEqual(hiringCompaniesList1,hiringCompaniesList2));
+        Assertions.assertTrue(companiesPage.areCompanyListsEqual(allCompaniesList1, allCompaniesList2));
+        Assertions.assertTrue(companiesPage.areCompanyListsEqual(hiringCompaniesList1, hiringCompaniesList2));
     }
 }
