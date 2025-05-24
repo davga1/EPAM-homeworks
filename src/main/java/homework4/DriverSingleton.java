@@ -3,6 +3,7 @@ package homework4;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public enum DriverSingleton {
     INSTANCE;
@@ -11,7 +12,7 @@ public enum DriverSingleton {
 
     public WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
-            String browser = System.getProperty("browser");
+            String browser = System.getenv("BROWSER");
             if (browser == null) {
                 throw new IllegalStateException("System property 'browser' is not set");
             }
@@ -23,6 +24,8 @@ public enum DriverSingleton {
                 case "edge":
                     driverThreadLocal.set(new EdgeDriver());
                     break;
+                case "firefox":
+                    driverThreadLocal.set(new FirefoxDriver());
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
